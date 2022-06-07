@@ -189,7 +189,7 @@ public:
 			std::cin >> rowchoice;
 			cinFlag = (std::cin.bad() || std::cin.fail()) ? TRUE : FALSE; // check if cin's error flags were set
 			cinReset();
-		} while (cinFlag);
+		} while (cinFlag && rowchoice < 1);
 
 		*rowout = rowchoice;
 
@@ -198,7 +198,7 @@ public:
 			std::cin >> colchoice;
 			cinFlag = (std::cin.bad() || std::cin.fail()) ? TRUE : FALSE; // check if cin's error flags were set
 			cinReset();
-		} while (cinFlag);
+		} while (cinFlag && colchoice < 1);
 
 		*colout = colchoice;
 	}
@@ -217,7 +217,7 @@ public:
 		
 		// spawn off thread to display menu
 		// don't really need this, but will be useful if I want to add a more involved menu/ opening animation in the future
-		// not sure why the casts are strictly necessary, but hey it compiles
+		// not sure why the casts are strictly necessary, but hey it compiles & runs
 		HANDLE threadhandle = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)displayMenu, (void*)&threadsync, 0, NULL);
 
 		std::cin.clear();
